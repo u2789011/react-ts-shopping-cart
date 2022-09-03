@@ -1,13 +1,13 @@
-import { Button, Card } from "react-bootstrap"
-import { useShoppingCart } from "../context/ShoppingCartContext"
-import { formatCurrency } from "../utilities/formatCurrency"
+import { Button, Card } from "react-bootstrap";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+import { formatCurrency } from "../utilities/formatCurrency";
 
 type StoreItemProps = {
-  id: number
-  name: string
-  price: number
-  imgUrl: string
-}
+  id: number;
+  name: string;
+  price: number;
+  imgUrl: string;
+};
 
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const {
@@ -15,8 +15,8 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-  } = useShoppingCart()
-  const quantity = getItemQuantity(id)
+  } = useShoppingCart();
+  const quantity = getItemQuantity(id);
 
   return (
     <Card className="h-100">
@@ -45,11 +45,31 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 className="d-flex align-items-center justify-content-center"
                 style={{ gap: ".5rem" }}
               >
-                <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                <Button
+                  onClick={() => decreaseCartQuantity(id)}
+                  className="rounded-circle"
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    margin: "0.5rem",
+                  }}
+                >
+                  -
+                </Button>
                 <div>
-                  <span className="fs-3">{quantity}</span> in cart
+                  <span className="fs-3">{quantity}</span>
                 </div>
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                <Button
+                  onClick={() => increaseCartQuantity(id)}
+                  className="rounded-circle"
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    margin: "0.5rem",
+                  }}
+                >
+                  +
+                </Button>
               </div>
               <Button
                 onClick={() => removeFromCart(id)}
@@ -63,5 +83,5 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
         </div>
       </Card.Body>
     </Card>
-  )
+  );
 }
